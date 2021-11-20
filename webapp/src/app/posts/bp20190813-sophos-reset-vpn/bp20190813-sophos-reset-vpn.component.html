@@ -1,0 +1,43 @@
+<h1> Sophos UTM (SG-Series) - Stuck IPSec Connections</h1>
+I ran into this problem with one of the UTMs I in a warehouse.
+The UTM had a couple of IPSec Connections that lost the ability to communicate (DNS) over IPSecfrom time-to-time sporadically.
+German Telekom, SOPHOS Support several external IT-consultants investigated - no conclusion to this behavior. No pattern (time, app-related, ...) was identified.
+
+<h2> Have you tried turning it off and on again?</h2>
+Turning the IPSec's off and on again seemed to be a reliable method to get the system working again.
+This resulted in a lot of support-calls from the warehouse personall and I wanted to give them something to help themselfs.
+Turning the UTM off and on again was no option, same to create a user and allow them to do so in the webinterface.
+Hence, using Powershell and a link on the coworkers desktops to perform an API-CALL was an option everyone could agree on.
+
+The Idea a nutshell:
+<ol>
+<li>get a list of all IPSec's </li>
+<li>turn them all of</li>
+<li>wait a couple of seconds to let the reset work</li>
+<li>turn them back on</li>
+<li>wait a couple of seconds to perform the restart </li>
+<li>inform the user to retry it now.</li>
+</ol>
+
+<h2> Solution Part 1 -- Communicate with the UTM via API</h2>
+The SOPHOS SG-Series provides an API to remotely control the UTM. By default this option is turned off and needs to be turned on under
+<kbd>Mananegment</kbd> <i class="fa fa-arrow-right"></i> <kbd>WebAdmin Settings</kbd> <i class="fa fa-arrow-right"></i> <kbd>RESTful API</kbd>.
+Now the endpoint <code>https://&lt;your IP or url&gt;:4444/api</code> is available.
+In order to use the api remotely, I recommend to create a service user and create a new API-TOKEN for this user.
+
+<h2> Solution Part 2 -- Get all IPSec's</h2>
+I wanted the script to be as flexible as possible so that I could reuse it on other sites without reprogramming it.
+The endpoint <code>/api/objects/ipsec_connection/site_to_site/</code> provides this information.
+<app-github-gist gistId="felixlindemann/c339b2ca4cbdd5c758324407c4cdbbe3"></app-github-gist>
+
+We are interested in the attribute <code>_ref</code> for each IPSec.
+
+<h2> Solution Part 3 -- Turning it off and again</h2>
+Sending an http-Patch to the endpoint <code>/api/objects/ipsec_connection/site_to_site/<strong>_ref_</strong></code> the IPSec can be modified and turned off and on again.
+Following the example, the latter can be achieved by calling <code>/api/objects/ipsec_connection/site_to_site/REF_IpsSitIpsecSiteASiteB</code>
+and providing a json-object in the body as follows, while status=true will turn the IPSec on, <code>status=false</code> off.
+<app-github-gist gistId="felixlindemann/31583838704bf8020fea5fe19dbc4edb"></app-github-gist>
+
+
+<h2> Solution Part 4 -- Putting it all together</h2>
+<app-github-gist gistId="felixlindemann/ac65137d40cd5d46aa4101a0a10cab17"></app-github-gist>

@@ -1,0 +1,22 @@
+<div class="card mb-2">
+  <h5 class="card-header">Categories</h5>
+  <div class="card-body" *ngIf="$CurrentCategory | async as currentCategory;  ">
+    <ul class="nav nav-pills flex-column">
+
+      <li class="nav-item ">
+        <a class="nav-link " [routerLink]="['/','blog','archive']"
+          [ngClass]="{'active':  currentCategory ===NOPARAM}"><i class="fab fa-html5"></i> All</a>
+      </li>
+      <li class="nav-item " *ngFor="let item of ( Categories   | keyvalue) ">
+        <a class="nav-link position-relative" [routerLink]="['/','blog','archive']"
+          [queryParams]="{'category':  item.key}" [ngClass]="{'active':  item.key   === currentCategory}"><i
+            [ngClass]="IconByCategory(item.key)"></i> {{item.key}}
+          <span *ngIf="showCount"
+            class="position-absolute top-0 start-100 translate-middle badge rounded-pill text-white bg-success"><small>
+              {{item.value}}</small>
+          </span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

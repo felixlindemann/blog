@@ -1,0 +1,40 @@
+
+<h1> PRTG - get Licence(s) from Sophos UTM (SG-Series)</h1>
+There is no need to explain how fatal an outdated licence in your firewalls can be.
+
+<h2> Problem - Monitor the remainig life time of Sophos SG-Licences</h2>
+To avoid this, I wanted to monitor the licence-life Time with [PRTG](https://www.paessler.com/) - unfortunately for SOPHOS SGs a licence-sensor wasn't included.
+
+<h2> Solution Part 1 -- Custom sensor using a powershell script</h2>
+I found <a href="https://www.paessler.com/manuals/prtg/custom_sensors" target="blank">PAESSLERs Custom Sensors</a> as a possible solution.
+The idea is to create a xml-structure that contains the result.
+As described in the above linked manual, two possible structures are supported.
+
+<ol>
+<li>The result itself contains a root element <code>prtg</code> containg one or more results. A result consists of a channel and a value.
+<app-github-gist gistId="felixlindemann/88224ec15a5997ba87a988aa5ddff407"></app-github-gist>
+
+</li>
+<li>The Error structure (sometimes more important than the actual value) also contains a root element <code>prtg</code>> and an error followed by the exception message.
+
+<app-github-gist gistId="felixlindemann/1b785a30d002e509fb53ac56938887cd"></app-github-gist>
+</li>
+</ol>
+
+<h2> Solution Part 2 -- Collect information from the UTM</h2>
+The SOPHOS SG-Series provides an API to remotely control the UTM. By default this option is turned off and needs to be turned on under Mananegment -> WebAdmin Settings -> RESTful API.
+Now the endpoint <code>https://&lt;your IP or url&gt;:4444/api</code> is available. In order to use the api remotely, I recommend to create a service user and create a new API-TOKEN for this user.
+
+For gathering Information regarding licenses I found the endpoint "api/nodes/licensing.license" returning all the information required.
+
+
+<h2>Solution Part 3 -- Putting it all together</h2>
+I found [this KB answer](https://kb.paessler.com/en/topic/71356-guide-for-powershell-based-custom-sensors) that summarizes it pretty good.
+<ol>
+<li>Configure the execution policy of the PRTG server</li>
+<li>Install (Copy) a powershell script on the PRTG probe in <code>&lt;PRTG Application Directory&gt;\Custom Sensors\EXEXML\</code>.</li>
+<li>Test the script on the probe from a powershell console</li>
+<li>Create the sensor in PRTG for each UTM you want to monitor the licences.</li>
+</ol>
+Find my script below. Each Licence will be represented as a channel in order to save PRTG-Sensor Licenses.
+<app-github-gist gistId="felixlindemann/5f52ee9dcc42290352f6a63c1204e491"></app-github-gist>

@@ -1,0 +1,34 @@
+<div class="row" *ngIf="$CurrentPost | async as post">
+  <div class="col-9">
+    <div class="card">
+      <div class="card-header">
+        {{post.title}}
+      </div>
+      <div class="card-body">
+        <ng-template appBlog></ng-template>
+      </div>
+      <div *ngIf="(3-0) !== 3" class="card-footer text-muted">
+
+      </div>
+    </div>
+  </div>
+  <div class="col-3">
+
+    <div class="card mb-3">
+      <img [src]="post.thumbnail" class="card-img-top" [alt]="post.introduction" *ngIf="post.hasThumbnail === true">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><small>Author: {{post.author}}</small></li>
+        <li class="list-group-item"><small>Category: <i [ngClass]="fontawesomIcon(post)"></i> {{post.category}}</small>
+        </li>
+        <li class="list-group-item"> <small>
+            Last Update: {{ post.postDateTime | date }}. </small> </li>
+      </ul>
+      <div class="card-body">
+        <h5 class="card-title">Tags</h5>
+        <p class="card-text"><small>
+            <span *ngFor="let tag of post.tags.sort()" class="badge bg-secondary text-light mr-2">{{tag}}</span>
+          </small></p>
+      </div>
+    </div>
+  </div>
+</div>

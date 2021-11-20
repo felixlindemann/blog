@@ -1,0 +1,6 @@
+$navbarHeight: 31px+ 2*16px;
+div.blogPage{
+  margin-top:$navbarHeight !important;
+  height: calc(100vh - $navbarHeight)  !important;
+  width: 100%;
+}
