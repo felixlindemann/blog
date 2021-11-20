@@ -20,6 +20,7 @@ import { BlogArchiveContainerComponent } from './components/blog-archive-contain
 import { WidgetTagCloudComponent } from './components/widget-tag-cloud/widget-tag-cloud.component';
 import { WidgetGithubGistComponent } from './components/widget-github-gist/widget-github-gist.component';
 import { APP_BASE_HREF } from '@angular/common';
+import { EmptyContainerComponent } from './components/empty-container/empty-container.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { APP_BASE_HREF } from '@angular/common';
     BlogArchiveContainerComponent,
     WidgetTagCloudComponent,
     WidgetGithubGistComponent,
+    EmptyContainerComponent,
   ],
   imports: [
     BrowserModule,

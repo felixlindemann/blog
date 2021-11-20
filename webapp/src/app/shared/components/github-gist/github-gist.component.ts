@@ -38,7 +38,7 @@ export class GithubGistComponent implements AfterViewInit {
     let doc = this.iframe.nativeElement.contentDocument || this.iframe.nativeElement.contentElement.contentWindow;
 
    let height= doc.body.scrollHeight + 'px';
-    console.log(height);
+  //  console.log(height);
     this.iframe.nativeElement.style.height  = height;
   }
 

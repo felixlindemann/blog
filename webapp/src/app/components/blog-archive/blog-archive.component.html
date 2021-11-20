@@ -46,7 +46,7 @@
               <div [ngClass]="{'col-md-10': post.hasThumbnail === true,'col': post.hasThumbnail != true}">
                 <div class="card-body">
                   <p class="card-text">{{post.introduction}}</p>
-                  <a [routerLink]="['/blog', post.id]" class="btn btn-sm btn-primary  pull-right">read more ...</a>
+                  <a [routerLink]="['/','blog','posts', post.id]" class="btn btn-sm btn-primary  pull-right">read more ...</a>
                 </div>
               </div>
             </div>

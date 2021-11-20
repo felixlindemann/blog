@@ -6,6 +6,7 @@ import { BlogArchiveComponent } from './components/blog-archive/blog-archive.com
 import { BlogContainerComponent } from './components/blog-container/blog-container.component';
 import { BlogHomeComponent } from './components/blog-home/blog-home.component';
 import { BlogPostComponent } from './components/blog-post/blog-post.component';
+import { EmptyContainerComponent } from './components/empty-container/empty-container.component';
 import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
@@ -17,16 +18,21 @@ const routes: Routes = [
       { path: 'about', component: AboutComponent },
       { path: 'home', component: BlogHomeComponent },
       {
-        path: 'blog', component: BlogArchiveContainerComponent, children: [
-          { path: 'archive', component: BlogArchiveComponent },
-          { path: '', redirectTo: 'archive', pathMatch: 'full' }
+        path: 'blog', component: EmptyContainerComponent, children: [
+          {
+            path: 'archive', component: BlogArchiveContainerComponent, children: [
+              { path: '', redirectTo: 'archive', pathMatch: 'full' },
+              { path: '**', component: BlogArchiveComponent }]
+          },
+          { path: 'posts/:id', component: BlogPostComponent },
+          { path: 'posts', redirectTo: '/blog/archive', pathMatch: 'full' },
+          { path: '', redirectTo: '/blog/archive', pathMatch: 'full' }
         ]
       },
-      { path: 'blog/:id', component: BlogPostComponent },
       { path: '', redirectTo: 'home', pathMatch: 'full' }
     ]
   },
-  { path: '**', redirectTo: '/' }
+  { path: '**', redirectTo: '/home' }
 ];
 
 @NgModule({
