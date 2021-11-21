@@ -1,0 +1,12 @@
+
+<div class="tag-container">
+  <ul class="tags" *ngIf="   WordCloudItems !== null && WordCloudItems.length >0">
+    <li class="tag"
+    *ngFor="let tag of WordCloudItems">
+<a class="tag tag__link"  [style.font-size]="tag.fontsize"
+[routerLink]="['/','blog','archive']"
+
+[queryParams]="{'tag': tag.tag}">{{tag.tag}}</a></li>
+  </ul>
+
+</div>

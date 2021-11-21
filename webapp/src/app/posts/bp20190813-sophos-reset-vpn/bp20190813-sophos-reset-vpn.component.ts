@@ -20,7 +20,7 @@ export class Bp20190813SophosResetVPNComponent extends blogPost implements OnIni
     this.category = 'Administration';
     this.hasThumbnail = true;
     this.thumbnail = 'assets/images/posts/20190813/sophos-utm-reset-ipsec.png';
-    this.tags = ['SOPHOS SG-Series', 'POWERSHELL', 'IPSEC', 'UTM-API'];
+    this.tags = ['SOPHOS','SG-Series', 'POWERSHELL', 'IPSEC', 'UTM-API'];
 
   }
 

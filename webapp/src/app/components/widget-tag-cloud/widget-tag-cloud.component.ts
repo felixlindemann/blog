@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PostsService } from 'src/app/services/posts.service';
 
 @Component({
   selector: 'app-widget-tag-cloud',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WidgetTagCloudComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: PostsService) { }
+
+  public get Tags(): Map<string, number>{
+    return this.service.Tags;
+  }
 
   ngOnInit(): void {
   }

@@ -96,7 +96,7 @@ export class blogPost {
 
 }
 
-export type BlogCategory = 'N/A' | 'Administration' | 'Photographie' | 'Programming' | 'Project' | 'Link';
+export type BlogCategory = 'N/A' | 'Administration' |'LaTeX'| 'Photographie' | 'Programming' | 'Project' | 'Link';
 
 export function getIconByCategory(cat: string): string {
   var component = new blogPost();
@@ -136,4 +136,12 @@ export function getAge(startDate: Date): ITimeDifference {
   let endDate: Date = new Date();
 
   return getDataDiff(startDate, endDate);
+}
+
+export interface IWordCloudItem  {
+  tag:string;
+  count: number;
+ color:string;
+   fontsize:string;
+
 }

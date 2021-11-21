@@ -20,7 +20,7 @@ export class Bp20211109UTMSSLVPNComponent extends blogPost implements OnInit {
     this.category = 'Administration';
     this.hasThumbnail = true;
     this.thumbnail = 'assets/images/posts/20211109/SSLVPNLogo.png';
-    this.tags = ['SOPHOS SG-Series', 'SSL-VPN'];
+    this.tags = ['SOPHOS','SG-Series', 'SSL-VPN'];
 
   }
 

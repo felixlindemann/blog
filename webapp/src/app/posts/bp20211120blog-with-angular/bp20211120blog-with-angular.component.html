@@ -1,0 +1,38 @@
+<h1>A Blog in pure angular <small>- without a database</small></h1>
+<p>
+
+I wanted to create a blog but I didn't want to ...</p>
+<ul>
+  <li>buy an own webspace</li>
+  <li>use Wordpress or anything alike</li>
+  <li>use a database for security and monetary reasons</li>
+</ul>
+<p>
+So I decided to start with github-pages and started with jekyll. I liked the idea to be able to write a simple blog without a database.
+Still, after two entries I didn't like jekyll so much that I decided to give angular a try.
+In <code>C#</code> you would use reflection to find all posts in the assembly - but as far as I know reflection isn't included in Typescript (yet).
+I found an example for a <a href="https://angular.io/guide/dynamic-component-loader">Dynamic Component Loader</a> that I used as a starting point for my blog.
+</p>
+<div class="alert alert-info">you can find the public repository to this blog under <a href="https://github.com/felixlindemann/blog">https://github.com/felixlindemann/blog</a></div>
+
+<h2>Blog Post Base Class</h2>
+This is the base class I use for all my posts in order to have the same standard fields available.
+<app-github-gist gistId="felixlindemann/9dade70643310b1f2c155e2e32c038d1"></app-github-gist>
+
+<h2>Static Categories - dynamic Tags</h2>
+I wanted a static category system to be able to sort and filter posts and a dynamic tag system that for now will be a simple <code>string[]</code>.
+<app-github-gist gistId="felixlindemann/53f0554cc63692ca038f6da11cf96ae6"></app-github-gist>
+
+<h2>Pseudo Reflection in Typescript: Index.ts</h2>
+In order to be able to load all posts I export them from an <code>index.ts</code> that I later import as <code>posts</code>.
+<app-github-gist gistId="felixlindemann/9145021815a28ff31a4175766a91f0a4"></app-github-gist>
+
+<h2>The Service - Get all posts from index.ts</h2>
+In my posts.service I import all post components this <code>index.ts</code>.
+<app-github-gist gistId="felixlindemann/4a43d904bf873e093728f9f27f589c82"></app-github-gist>
+
+<h2>Displaying a post and load it's component dynamically</h2>
+Just like in the above mentioned example for a <a href="https://angular.io/guide/dynamic-component-loader">Dynamic Component Loader</a>
+I included a template that is tagged with my custom directive <code>appBlog</code>.
+When the page is loaded, I replace this template with the component linked in the blogPost.
+<app-github-gist gistId="felixlindemann/3cee6ca4af9212dc18608ba7bbb1b5cb"></app-github-gist>

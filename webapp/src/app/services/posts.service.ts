@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { blogPost } from '../model/blog';
 
-import posts from '../posts';
+import posts from '../posts'; // index.ts
 
 @Injectable({
   providedIn: 'root'
@@ -44,6 +44,17 @@ export class PostsService {
   get Categories(): Map<string, number> {
     let kvp = new Map<string, number>();
     var arr = this.Posts.map(x => x.category as string).sort((a, b) => a.localeCompare(b));
+    arr.reduce((acc: any, key: string, i) => { kvp.set(key, (kvp.get(key) || 0) + 1); }, {});
+    return kvp;
+  }
+
+  get Tags():Map<string, number>{
+    let kvp = new Map<string, number>();
+    var arr : string[] =[];
+
+    this.Posts.forEach(x=> arr.push(...x.tags));
+
+
     arr.reduce((acc: any, key: string, i) => { kvp.set(key, (kvp.get(key) || 0) + 1); }, {});
     return kvp;
   }

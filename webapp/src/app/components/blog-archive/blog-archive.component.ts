@@ -84,10 +84,22 @@ export class BlogArchiveComponent implements OnInit, OnDestroy {
           this.CurrentTag = params[QRY_TAG] === undefined ? '' : String(params[QRY_TAG]);
           this.CurrentAuthor = params[QRY_AUTHOR] === undefined ? '' : String(params[QRY_AUTHOR]);
           // TODO extend Filter
-          return this.Posts.filter(post =>
-            this.CurrentCategory.localeCompare('') === 0 ||
-            this.CurrentCategory.localeCompare(String(post.category)) === 0
-          );
+          let filtered = this.Posts;
+
+          if(this.CurrentCategory.length> 0){
+            filtered = filtered.filter(post=>this.CurrentCategory.localeCompare(String(post.category)) === 0);
+          }
+          if(this.CurrentTag.length> 0){
+            filtered = filtered.filter(post=> post.tags.includes(this.CurrentTag));
+          }
+          if(this.CurrentAuthor.length> 0){
+            filtered = filtered.filter(post=>this.CurrentAuthor.localeCompare(String(post.author)) === 0);
+          }
+          if(this.CurrentYear > 0){
+            filtered = filtered.filter(post=> post.postDateTime.getFullYear() === this.CurrentYear);
+          }
+
+          return filtered;
         })
       );
   }

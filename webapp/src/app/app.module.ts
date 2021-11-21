@@ -21,6 +21,8 @@ import { WidgetTagCloudComponent } from './components/widget-tag-cloud/widget-ta
 import { WidgetGithubGistComponent } from './components/widget-github-gist/widget-github-gist.component';
 import { APP_BASE_HREF } from '@angular/common';
 import { EmptyContainerComponent } from './components/empty-container/empty-container.component';
+import { Bp20211120blogWithAngularComponent } from './posts/bp20211120blog-with-angular/bp20211120blog-with-angular.component';
+import { Bp20081207LatexRootyHelixComponent } from './posts/bp20081207-latex-rooty-helix/bp20081207-latex-rooty-helix.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { EmptyContainerComponent } from './components/empty-container/empty-cont
     WidgetTagCloudComponent,
     WidgetGithubGistComponent,
     EmptyContainerComponent,
+    Bp20211120blogWithAngularComponent,
+    Bp20081207LatexRootyHelixComponent,
   ],
   imports: [
     BrowserModule,

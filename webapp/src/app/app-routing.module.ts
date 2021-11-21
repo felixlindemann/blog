@@ -21,7 +21,7 @@ const routes: Routes = [
         path: 'blog', component: EmptyContainerComponent, children: [
           {
             path: 'archive', component: BlogArchiveContainerComponent, children: [
-              { path: '', redirectTo: 'archive', pathMatch: 'full' },
+              { path: '', redirectTo: 'index', pathMatch: 'full' },
               { path: '**', component: BlogArchiveComponent }]
           },
           { path: 'posts/:id', component: BlogPostComponent },

@@ -21,7 +21,7 @@ export class Bp20190813MonitorUTMLicencesWithPRTGComponent  extends blogPost imp
   this.category = 'Administration';
   this.hasThumbnail = true;
   this.thumbnail = 'assets/images/posts/20190813/sophos-utm-sensort-prtg.png';
-  this.tags = ['SOPHOS SG-Series', 'POWERSHELL', 'PRTG', 'UTM-API'];
+  this.tags = ['SOPHOS','SG-Series', 'POWERSHELL', 'PRTG', 'UTM-API'];
 
   }
 

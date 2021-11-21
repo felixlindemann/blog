@@ -31,6 +31,9 @@ export class BlogPostComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
+  ngOnDestroy() {
+    this.subs.unsubscribe();
+  }
   get isLoaded(): boolean {
     return (this.post.id.localeCompare(this.oldId) === 0);
   }
@@ -82,9 +85,6 @@ export class BlogPostComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
-  ngOnDestroy() {
-    this.subs.unsubscribe();
-  }
 
 
 
