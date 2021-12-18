@@ -21,8 +21,25 @@ import { WidgetTagCloudComponent } from './components/widget-tag-cloud/widget-ta
 import { WidgetGithubGistComponent } from './components/widget-github-gist/widget-github-gist.component';
 import { APP_BASE_HREF } from '@angular/common';
 import { EmptyContainerComponent } from './components/empty-container/empty-container.component';
-import { Bp20211120blogWithAngularComponent } from './posts/bp20211120blog-with-angular/bp20211120blog-with-angular.component';
-import { Bp20081207LatexRootyHelixComponent } from './posts/bp20081207-latex-rooty-helix/bp20081207-latex-rooty-helix.component';
+import { SitemapComponent } from './components/sitemap/sitemap.component';
+
+import { MathjaxModule } from 'mathjax-angular';
+import { RootMathjaxConfig } from 'mathjax-angular/models';
+
+export const mathJxConfig :RootMathjaxConfig = {
+  "config": {
+    "loader": {
+      "load": ["output/svg", "[tex]/require", "[tex]/ams" ]
+    },
+    "tex": {
+      "inlineMath": [['$', '$'], ['\\(', '\\)']],
+      "extensions": ["AMSmath.js", "AMSsymbols.js"],
+      "packages": ["base", "require","displaymath", "ams","amsmath"]
+    },
+    "svg": { "fontCache": "global" }
+  },
+  "src": "https://cdn.jsdelivr.net/npm/mathjax@3.0.0/es5/startup.js"
+};
 
 @NgModule({
   declarations: [
@@ -41,14 +58,14 @@ import { Bp20081207LatexRootyHelixComponent } from './posts/bp20081207-latex-roo
     WidgetTagCloudComponent,
     WidgetGithubGistComponent,
     EmptyContainerComponent,
-    Bp20211120blogWithAngularComponent,
-    Bp20081207LatexRootyHelixComponent,
+    SitemapComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     SharedModule,
     NgbModule,
+    MathjaxModule.forRoot(  )
   ],
   providers: [
     {provide:APP_BASE_HREF, useValue:'/'}

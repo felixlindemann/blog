@@ -1,0 +1,31 @@
+<h1>Sitemap generator for this page</h1>
+<pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"&gt;
+&lt;url&gt;
+  &lt;loc&gt;https://felixlindemann.github.io/&lt;/loc&gt;
+  &lt;lastmod&gt;{{CurrentDate | date : "yyyy-MM-dd"}}&lt;/lastmod&gt;
+  &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+  &lt;priority&gt;1.0&lt;/priority&gt;
+&lt;/url&gt;
+&lt;url&gt;
+  &lt;loc&gt;https://felixlindemann.github.io/home&lt;/loc&gt;
+  &lt;lastmod&gt;{{CurrentDate | date : "yyyy-MM-dd"}}&lt;/lastmod&gt;
+  &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+  &lt;priority&gt;1.0&lt;/priority&gt;
+&lt;/url&gt;<ng-container *ngFor="let item of Posts">
+  &lt;url&gt;
+    &lt;loc&gt;https://felixlindemann.github.io/blog/posts/{{item.id}}&lt;/loc&gt;
+    &lt;lastmod&gt;{{item.postDateTime | date : "yyyy-MM-dd"}}&lt;/lastmod&gt;
+    &lt;priority&gt;1.0&lt;/priority&gt;
+  &lt;/url&gt;</ng-container>
+  &lt;url&gt;
+    &lt;loc&gt;https://felixlindemann.github.io/blog/archive/&lt;/loc&gt;
+    &lt;lastmod&gt;{{CurrentDate | date : "yyyy-MM-dd"}}&lt;/lastmod&gt;
+    &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+    &lt;priority&gt;1.0&lt;/priority&gt;
+  &lt;/url&gt;
+&lt;/urlset&gt;
+
+
+</pre>

@@ -8,6 +8,7 @@ import { BlogHomeComponent } from './components/blog-home/blog-home.component';
 import { BlogPostComponent } from './components/blog-post/blog-post.component';
 import { EmptyContainerComponent } from './components/empty-container/empty-container.component';
 import { HomeComponent } from './components/home/home.component';
+import { SitemapComponent } from './components/sitemap/sitemap.component';
 
 const routes: Routes = [
 
@@ -16,6 +17,7 @@ const routes: Routes = [
     component: BlogContainerComponent,
     children: [
       { path: 'about', component: AboutComponent },
+      { path: 'sitemap', component: SitemapComponent },
       { path: 'home', component: BlogHomeComponent },
       {
         path: 'blog', component: EmptyContainerComponent, children: [
@@ -31,8 +33,7 @@ const routes: Routes = [
       },
       { path: '', redirectTo: 'home', pathMatch: 'full' }
     ]
-  },
-  { path: '**', redirectTo: '/home' }
+  }
 ];
 
 @NgModule({
