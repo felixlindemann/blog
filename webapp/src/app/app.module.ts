@@ -61,7 +61,7 @@ export const mathJxConfig :RootMathjaxConfig = {
     SitemapComponent,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     SharedModule,
     NgbModule,
