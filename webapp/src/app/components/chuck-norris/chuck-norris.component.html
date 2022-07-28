@@ -1,0 +1,11 @@
+
+  <button *ngFor="let l of lang" [ngClass]="{selected:l === currentLang}" (click)="useLanguage(l)">{{l | translate }}</button>
+
+  <h2>Chuck Norris</h2>
+  <h3>{{'en' | translate}}</h3>
+  <p > {{  currentJoke }}</p>
+
+  <h3>{{ currentLang | translate}}</h3>
+  <p > {{ currentJokeTranslated }}</p>
+
+  <button   (click)="getRandomJoke()">{{'btn_new_joke' | translate }}</button>

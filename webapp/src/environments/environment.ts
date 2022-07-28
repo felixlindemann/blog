@@ -4,6 +4,14 @@
 
 export const environment = {
   production: false
+  , lang : [  "en" , "de",    "tlh",    "fr",    "nl", "es"   ]
+  , deepMl:{
+    url: "https://api-free.deepl.com/v2/",
+    key: "df2d66e0-e7f1-6381-0142-be63a0bc77fc:fx"
+  }
+  , chuck: {
+    random: "https://api.chucknorris.io/jokes/random"
+  }
 };
 
 /*

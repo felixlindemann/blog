@@ -25,6 +25,7 @@ import { SitemapComponent } from './components/sitemap/sitemap.component';
 
 import { MathjaxModule } from 'mathjax-angular';
 import { RootMathjaxConfig } from 'mathjax-angular/models';
+import { ChuckNorrisComponent } from './components/chuck-norris/chuck-norris.component';
 
 export const mathJxConfig :RootMathjaxConfig = {
   "config": {
@@ -59,6 +60,7 @@ export const mathJxConfig :RootMathjaxConfig = {
     WidgetGithubGistComponent,
     EmptyContainerComponent,
     SitemapComponent,
+    ChuckNorrisComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
