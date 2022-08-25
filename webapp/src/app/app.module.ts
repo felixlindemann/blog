@@ -7,9 +7,10 @@ import { SharedModule } from './shared/shared.module';
 import { BlogDirective } from './directives/blog.directive';
 import { BlogArchiveComponent } from './components/blog-archive/blog-archive.component';
 
+import { environment } from 'src/environments/environment';
 import   posts from './posts';
 import { BlogContainerComponent } from './components/blog-container/blog-container.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { HomeComponent } from './components/home/home.component';
 import { BlogHomeComponent } from './components/blog-home/blog-home.component';
 import { BlogPostComponent } from './components/blog-post/blog-post.component';
@@ -22,25 +23,11 @@ import { WidgetGithubGistComponent } from './components/widget-github-gist/widge
 import { APP_BASE_HREF } from '@angular/common';
 import { EmptyContainerComponent } from './components/empty-container/empty-container.component';
 import { SitemapComponent } from './components/sitemap/sitemap.component';
+import { MathjaxModule } from './directives/mathjax-lib/directive/mathjax.module';
 
-import { MathjaxModule } from 'mathjax-angular';
-import { RootMathjaxConfig } from 'mathjax-angular/models';
 import { ChuckNorrisComponent } from './components/chuck-norris/chuck-norris.component';
 
-export const mathJxConfig :RootMathjaxConfig = {
-  "config": {
-    "loader": {
-      "load": ["output/svg", "[tex]/require", "[tex]/ams" ]
-    },
-    "tex": {
-      "inlineMath": [['$', '$'], ['\\(', '\\)']],
-      "extensions": ["AMSmath.js", "AMSsymbols.js"],
-      "packages": ["base", "require","displaymath", "ams","amsmath"]
-    },
-    "svg": { "fontCache": "global" }
-  },
-  "src": "https://cdn.jsdelivr.net/npm/mathjax@3.0.0/es5/startup.js"
-};
+ import {TranslateModule} from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -63,14 +50,15 @@ export const mathJxConfig :RootMathjaxConfig = {
     ChuckNorrisComponent,
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    BrowserModule,
     AppRoutingModule,
     SharedModule,
-    NgbModule,
-    MathjaxModule.forRoot(  )
+    TranslateModule.forRoot(),
+     MathjaxModule.forRoot( environment.mathjaxConfig )
   ],
   providers: [
-    {provide:APP_BASE_HREF, useValue:'/'}
+    {provide:APP_BASE_HREF, useValue:'/'},
+
   ],
   bootstrap: [AppComponent]
 })

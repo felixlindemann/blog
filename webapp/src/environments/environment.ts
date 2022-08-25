@@ -11,6 +11,20 @@ export const environment = {
   }
   , chuck: {
     random: "https://api.chucknorris.io/jokes/random"
+  },
+  mathjaxConfig: {
+    "config": {
+      "loader": {
+        "load": ["output/svg", "[tex]/require", "[tex]/ams" ]
+      },
+      "tex": {
+        "inlineMath": [['$', '$'], ['\\(', '\\)']],
+        "extensions": ["AMSmath.js", "AMSsymbols.js"],
+        "packages": ["base", "require","displaymath", "ams","amsmath"]
+      },
+      "svg": { "fontCache": "global" }
+    },
+    "src": "https://cdn.jsdelivr.net/npm/mathjax@3.0.0/es5/startup.js"
   }
 };
 

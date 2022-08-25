@@ -19,7 +19,8 @@ const declaredComponents =[
 
 const declaredModules =[
   FontAwesomeModule,
-  RouterModule
+  RouterModule,
+  CommonModule
 ];
 
 @NgModule({

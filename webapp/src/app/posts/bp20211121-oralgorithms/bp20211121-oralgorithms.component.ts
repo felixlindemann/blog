@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { blogPost } from 'src/app/model/blog';
-
 @Component({
   selector: 'app-bp20211121-oralgorithms',
   templateUrl: './bp20211121-oralgorithms.component.html',
