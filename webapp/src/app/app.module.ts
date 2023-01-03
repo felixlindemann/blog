@@ -23,7 +23,7 @@ import { WidgetGithubGistComponent } from './components/widget-github-gist/widge
 import { APP_BASE_HREF } from '@angular/common';
 import { EmptyContainerComponent } from './components/empty-container/empty-container.component';
 import { SitemapComponent } from './components/sitemap/sitemap.component';
-import { MathjaxModule } from './directives/mathjax-lib/directive/mathjax.module';
+import { MathjaxModule } from "mathjax-angular";
 
 import { ChuckNorrisComponent } from './components/chuck-norris/chuck-norris.component';
 

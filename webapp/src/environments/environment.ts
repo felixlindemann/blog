@@ -24,7 +24,7 @@ export const environment = {
       },
       "svg": { "fontCache": "global" }
     },
-    "src": "https://cdn.jsdelivr.net/npm/mathjax@3.0.0/es5/startup.js"
+    "src": "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/startup.js"
   }
 };
 
