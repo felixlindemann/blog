@@ -28,6 +28,7 @@ import { MathjaxModule } from "mathjax-angular";
 import { ChuckNorrisComponent } from './components/chuck-norris/chuck-norris.component';
 
  import {TranslateModule} from '@ngx-translate/core';
+import { Bp20230103SafezoneMaerklinComponent } from './posts/bp20230103-safezone-maerklin/bp20230103-safezone-maerklin.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { ChuckNorrisComponent } from './components/chuck-norris/chuck-norris.com
     EmptyContainerComponent,
     SitemapComponent,
     ChuckNorrisComponent,
+    Bp20230103SafezoneMaerklinComponent,
   ],
   imports: [
     BrowserModule,

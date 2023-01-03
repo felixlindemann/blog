@@ -1,0 +1,155 @@
+<div class="row">
+  <div class="col-5">
+
+    <h1>Problem</h1>
+    Modeltrains are you usually placed on small areas where one tries
+    to place as many rails as possible. The structure gauge (Lichtraumprofil) sometimes does not provide enough space
+    to assure a collision free travel - espcially in Schattenbahnhöfen.
+    This post demonstrates a solution to determine safe-zones for long vehicles.
+
+    <h1>Solution</h1>
+    <ol>
+      <li>draw a circle for the radius in question</li>
+      <li>place both axis of a cabin on this circle (small black dots in the image to the right) </li>
+      <li>the radius of the inner safe zone is defined by the intersection of the inner cabin wall and the y-Axis (cyan)
+        - as this point marks the farest point the inner side of the cabin gets.</li>
+      <li>the radius of the outer safe zone is defined by both of the outer corners of the cabin. These points have the
+        largest distance from the offspring (purple).</li>
+        <li>you may want to add some additional buffer (red dotted line) for safety reasons</li>
+    </ol>
+
+    <h1>Calculus</h1>
+    Hopefully the following equations do not need further explanations.
+    <div [mathjax]="Formula"></div>
+
+  </div>
+  <div class="col-7">
+
+    <div class="svginside" style="max-width:480px">
+
+      <canvas width="430" height="260"></canvas>
+      <svg height="100%" width="100%"
+        attr.viewBox="{{xMin - 5}} {{yMin - 5}} {{xMax - xMin + 10}} {{yMax - yMin + 10}}">
+        <style>
+          .safezone {
+            stroke: red;
+            fill: none;
+            stroke-dasharray: 3 5;
+          }
+
+          .kreisMittelLinie {
+            stroke: black;
+            fill: none;
+          }
+
+          .achsMittelpunkt {
+            stroke: black;
+            fill: black;
+          }
+
+          .waggonOutline {
+            stroke: black;
+
+            fill: none;
+          }
+
+
+          .mittelllinie {
+            stroke-width: 1;
+            stroke: black;
+            stroke-dasharray: 5 3;
+          }
+
+          .radiusA {
+            stroke-width: 1;
+            stroke: aqua;
+            fill: none;
+          }
+
+          .radiusB {
+            stroke-width: 1;
+            stroke: purple;
+            fill: none;
+          }
+
+          .radiusH {
+            stroke-width: 1;
+            stroke: green;
+          }
+
+          .small {
+            font: italic 8px sans-serif;
+          }
+
+          .heavy {
+            font: bold 30px sans-serif;
+          }
+
+          /* Note that the color of the text is set with the    *
+       * fill property, the color property is for HTML only */
+          .Rrrrr {
+            font: italic 40px serif;
+            fill: red;
+          }
+
+          .startNode {
+            fill: red;
+          }
+        </style>
+        <defs>
+          <g id="drawing">
+            <g id="basiskreis">
+              <circle class="kreisMittelLinie" [attr.cx]="0" [attr.cy]="0" [attr.r]="Radius" />
+              <line class="mittelllinie" x1="-10" x2="10" y1="0" y2="0" />
+              <line class="mittelllinie" y1="-10" y2="10" x1="0" x2="0" />
+              <line class="mittelllinie" [attr.x1]="0" [attr.y1]="100+Radius" [attr.x2]="0" [attr.y2]="0" />
+              <line class="mittelllinie" [attr.x1]="-(100+Radius)" [attr.y1]="0" [attr.x2]="100+Radius" [attr.y2]="0" />
+            </g>
+            <g id="safezone">
+
+              <circle class="safezone" [attr.cx]="0" [attr.cy]="0" [attr.r]="RSZA + AddtionsalBuffer" />
+              <circle class="safezone" [attr.cx]="0" [attr.cy]="0" [attr.r]="RSZI - AddtionsalBuffer" />
+
+
+            </g>
+            <g id="waggon">
+              <rect class="waggonOutline" [attr.x]="PointWaggon.X" [attr.y]="  PointWaggon.Y"
+                [attr.width]="ReferenzWaggonLength" [attr.height]="[ReferenzWaggonWidth]" />
+
+              <circle class="achsMittelpunkt" [attr.cx]="PointsAchse[0].X" [attr.cy]="PointsAchse[0].Y" [attr.r]="2" />
+              <circle class="achsMittelpunkt" [attr.cx]="PointsAchse[1].X" [attr.cy]="PointsAchse[1].Y" [attr.r]="2" />
+            </g>
+
+            <g id="szI">
+              <line class="radiusH" [attr.x1]="ReferenzWaggonAchsAbstand/2" [attr.y1]="RSZI + ReferenzWaggonWidth/2"
+                [attr.x2]="ReferenzWaggonAchsAbstand/2" [attr.y2]="0" />
+
+              <circle class="radiusA" [attr.cx]="0" [attr.cy]="0" [attr.r]="RSZI" />
+              <line class="radiusA" [attr.x1]="0" [attr.y1]="0" [attr.x2]="PointsAchse[1].X"
+                [attr.y2]="PointsAchse[1].Y" />
+            </g>
+            <g id="szA">
+
+              <circle class="radiusB" [attr.cx]="0" [attr.cy]="0" [attr.r]="RSZA" />
+              <line class="radiusB" [attr.x1]="0" [attr.y1]="0" [attr.x2]="PointWaggon.X"
+                [attr.y2]=" PointWaggon.Y + ReferenzWaggonWidth " />
+            </g>
+
+
+          </g>
+        </defs>
+        <use xlink:href="#drawing" transform="rotate(180,0,0)" />
+      </svg>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col">
+    <h2>References</h2>
+    Lichtraumprofil nach NEM102 auf <a href=" https://www.fremo-net.eu/modulsysteme/baugroesse-h0/h0-europa/h0fine/normen/lichtraumprofil/" >Freundeskreis Modellbahn</a>
+
+  </div>
+</div>

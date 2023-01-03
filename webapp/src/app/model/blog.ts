@@ -96,7 +96,7 @@ export class blogPost {
 
 }
 
-export type BlogCategory = 'N/A' | 'Administration' |'LaTeX'| 'Photographie' | 'Programming' | 'Project' | 'Link';
+export type BlogCategory = 'N/A' | 'Administration' |'LaTeX'| 'Photographie' | 'Programming' | 'Project' | 'Link' | 'Model-Trains';
 
 export function getIconByCategory(cat: string): string {
   var component = new blogPost();
